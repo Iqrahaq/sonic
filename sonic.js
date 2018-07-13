@@ -19,16 +19,14 @@ for(var n=0;n<225;n++){
    n++;
 }
 
+var grid = document.getElementsByClassName("gridBox");
 for(var i=0;i<225;i++){
-    var grid = document.getElementsByClassName("grid-box");
     if(i == 121){
         var start = document.createElement("img");
         start.src = "img/start.gif";
         start.setAttribute("alt", "Sonic Start");
         start.setAttribute("id", "sonicStart");
         grid[i].appendChild(start);
+        grid[i].style.position = "relative";
     }
 }
-
-
-

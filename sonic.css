@@ -63,8 +63,16 @@ body {
     border-color: black;
 }
 
+#sonicStart{
+    width: 50px;
+    position: absolute;
+    top: -2px;
+    left: -15px;
+}
+
 #sonic{
     transform: rotateY(180deg);
+    width: 100px;
 }
 
 
