@@ -1,0 +1,4 @@
+-Github domain thingy
+-fall gif
+-start gif extend the second last part
+-css overlay, or javascript dom manipulation
