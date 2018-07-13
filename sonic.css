@@ -71,8 +71,13 @@ body {
 }
 
 #sonic{
+    display: hidden;
     transform: rotateY(180deg);
     width: 100px;
+}
+
+#sonicEnd{
+    display: hidden;
 }
 
 
