@@ -2,7 +2,7 @@ body {
     margin: 5px;
 }
 
-.statsBar, #ring, #top {
+.statsBar, #ring, #top, #logo {
     display: flex;
     flex-direction: row;
     position: relative;
@@ -27,6 +27,17 @@ body {
 
 #ringScoreImage, #topScoreImage{
   max-width: 60px;
+}
+
+#sonicLogoImage{
+    max-height: 36px;
+    margin: auto;
+    padding: 0;
+}
+
+#logo{
+    width: 300px;
+    padding: 0;
 }
 
 #ringScore, #topScore{
