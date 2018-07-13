@@ -19,7 +19,16 @@ for(var n=0;n<225;n++){
    n++;
 }
 
-var grid = document.getElementsByClassName("grid-box");
+for(var i=0;i<211;i++){
+    if(i == 211){
+        var grid = document.getElementsByClassName("grid-box");
+        var start = document.createElement("img");
+        start.src = "images/start.gif";
+        start.setAttribute("alt", "Sonic Start");
+        start.setAttribute("id", "sonicStart");
+        grid[i].appendChild(start);
+    }
+}
 
 
 
