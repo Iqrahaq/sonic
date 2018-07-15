@@ -21,6 +21,7 @@ body {
 }
 
 #ring{
+    position: absolute;
     margin-bottom: 0;
     padding-bottom: 0;
 }
@@ -33,10 +34,17 @@ body {
     max-width: 50px;
 }
 
-#sonicLogoImage{
-    display: none;
-    max-height: 50px;
+#logo{
     margin: auto;
+}
+
+#ringScoreImage{
+    max-height: 44px;
+}
+
+#sonicLogoImage{
+    max-height: 45px;
+    
 }
 
 #ringScore, #topScore{
