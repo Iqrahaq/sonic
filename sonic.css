@@ -85,8 +85,18 @@ body {
     border-color: black;
 }
 
-#sonic{
-    transform: rotateY(180deg);
+#sonicAvatar, #collectRing{
+    max-height: 34px;
+    position: absolute;
+    bottom: -1px;
+    right: -4.5px;
+}
+
+#collectRing{
+    max-height: 30px;
+    position: absolute;
+    bottom: 0.1px;
+    right: 0.1px;
 }
 
 
