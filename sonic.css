@@ -30,7 +30,7 @@ body {
 }
 
 #ringScoreImage, #topScoreImage{
-  max-width: 80px;
+    max-width: 50px;
 }
 
 #sonicLogoImage{
@@ -47,6 +47,10 @@ body {
 
 #topScore{
     padding-right: 10px;
+}
+
+#ringScore{
+    padding-left: 10px;
 }
 
 #gridContainer {
