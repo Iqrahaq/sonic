@@ -1,13 +1,13 @@
 body {
-    margin: 5px;
+    margin: 40px;
 }
 
-.statsBar, #ring, #top, #logo {
+.statsBar, #ring, #top {
     display: flex;
     flex-direction: row;
     position: relative;
     max-width: 510px;
-    max-height: 45px;
+    max-height: 50px;
     background-color: #f5e360;
     overflow: hidden;
     border-style: solid;
@@ -18,7 +18,11 @@ body {
 #top{
     position:absolute;
     right: 0;
-    padding-right: 10px;
+}
+
+#ring{
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .statsBar{
@@ -26,18 +30,13 @@ body {
 }
 
 #ringScoreImage, #topScoreImage{
-  max-width: 60px;
+  max-width: 80px;
 }
 
 #sonicLogoImage{
-    max-height: 36px;
+    display: none;
+    max-height: 50px;
     margin: auto;
-    padding: 0;
-}
-
-#logo{
-    width: 300px;
-    padding: 0;
 }
 
 #ringScore, #topScore{
@@ -74,21 +73,8 @@ body {
     border-color: black;
 }
 
-#sonicStart{
-    width: 50px;
-    position: absolute;
-    top: -2px;
-    left: -15px;
-}
-
 #sonic{
-    display: none;
     transform: rotateY(180deg);
-    width: 100px;
-}
-
-#sonicEnd{
-    display: none;
 }
 
 
