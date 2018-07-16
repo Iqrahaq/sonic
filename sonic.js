@@ -22,7 +22,7 @@ for(var n=0;n<225;n++){
    n++;
 }
 
-
+//Sonic Starting Position
 for(var i=0;i<225;i++){
     if(i == 108){
         sonicAvatar.src = "img/start.gif";
@@ -48,16 +48,18 @@ collectRing.setAttribute("id", "collectRing");
 box[r].appendChild(collectRing);
 box[r].style.position = "relative";
 
-//Arrow keys - Figure out rotations based on movement
+
+//Arrow keys - Rotation and Movement of Avatar - Figure out rotations based on movement
 document.onkeydown = function(evt) {
     evt = evt || window.event;
     if (evt.keyCode == 37) {
         sonicAvatar.src = 'img/sonic.gif';
+        sonicAvatar.style.transform = "rotate(0deg)";
         moveLeft();
     } else if (evt.keyCode == 38) {
         sonicAvatar.src = 'img/sonic.gif';
-        sonicAvatar.style.transform = "rotate(-90deg)";
-        sonicAvatar.style.transform = "scaleX(-1)";
+        sonicAvatar.style.transform = "rotate(90deg)";
+        //sonicAvatar.style.transform = "scaleX(-1)";
         moveUp();
     } else if (evt.keyCode == 39) {
         sonicAvatar.src = 'img/sonic.gif';
@@ -66,8 +68,8 @@ document.onkeydown = function(evt) {
         moveRight();
     } else if (evt.keyCode == 40) {
         sonicAvatar.src = 'img/sonic.gif';
-        sonicAvatar.style.transform = "rotate(90deg)";
-        sonicAvatar.style.transform = "scaleY(-1)";
+        sonicAvatar.style.transform = "rotate(-90deg)";
+        //sonicAvatar.style.transform = "scaleY(-1)";
         moveDown();
     } else if (evt.keyCode == 78) {
         restart();
@@ -75,3 +77,34 @@ document.onkeydown = function(evt) {
     checkEnd();
 };
 
+//Move Left 1 Box at a time.
+function moveLeft(){
+    for(var i=0;i<225;i--){
+            box[i].appendChild(sonicAvatar);
+            box[i].style.position = "relative";
+    }
+}
+
+//Move Right 1 Box at a time.
+function moveRight(){
+    for(var i=0;i<225;i++){
+            box[i].appendChild(sonicAvatar);
+            box[i].style.position = "relative";
+    }
+}
+
+//Move Up 1 Box at a time.
+function moveUp(){
+    for(var i=0;i<0;i=i-16){
+            box[i].appendChild(sonicAvatar);
+            box[i].style.position = "relative";
+    }
+}
+
+//Move Down 1 Box at a time.
+function moveDown(){
+    for(var i=0;i<225;i=i+16){
+            box[i].appendChild(sonicAvatar);
+            box[i].style.position = "relative";
+    }
+}
