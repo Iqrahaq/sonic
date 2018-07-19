@@ -66,22 +66,19 @@ document.onkeydown = function(evt) {
     evt = evt || window.event;
     if (evt.keyCode == 37) {
         sonicAvatar.src = 'img/sonic.gif';
-        sonicAvatar.style.webkitTransform = "rotate(0deg)";
+        sonicAvatar.style.webkitTransform = 'scaleX(-1)';
         moveLeft();
     } else if (evt.keyCode == 38) {
         sonicAvatar.src = 'img/sonic.gif';
-        sonicAvatar.style.webkitTransform = "rotate(-90deg)";
-        sonicAvatar.style.webkitTransform = "scaleX(-1)";
+        sonicAvatar.style.webkitTransform = 'rotate(-90deg)';
         moveUp();
     } else if (evt.keyCode == 39) {
         sonicAvatar.src = 'img/sonic.gif';
-        sonicAvatar.style.webkitTransform = "rotate(180deg)";
-        sonicAvatar.style.webkitTransform = "scaleX(-1)";
+        sonicAvatar.style.webkitTransform = 'rotate(0deg)';
         moveRight();
     } else if (evt.keyCode == 40) {
         sonicAvatar.src = 'img/sonic.gif';
-        sonicAvatar.style.webkitTransform = "rotate(-90deg)";
-        sonicAvatar.style.webkitTransform = "scaleY(-1)";
+        sonicAvatar.style.webkitTransform = 'rotate(90deg)';
         moveDown();
     } else if (evt.keyCode == 78) {
         restart();
