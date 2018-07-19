@@ -22,7 +22,18 @@ for(var n=0;n<225;n++){
    n++;
 }
 
-//Sonic Starting Position
+//On window loadup make r = 116, and then randomly generate ring position.
+window.onload = function(){
+    var r = 116;
+    var collectRing = document.createElement("img");
+    collectRing.src = "img/ring.gif";
+    collectRing.setAttribute("alt", "Collect Ring");
+    collectRing.setAttribute("id", "collectRing");
+    box[r].appendChild(collectRing);
+    box[r].style.position = "relative";
+};
+
+//Sonic and Ring Starting Position.
 for(var i=0;i<225;i++){
     if(i == 108){
         sonicAvatar.src = "img/start.gif";
@@ -31,23 +42,23 @@ for(var i=0;i<225;i++){
         box[i].appendChild(sonicAvatar);
         box[i].style.position = "relative";
     }
+
+    if(i == 116 && $('#box[i]').is(':empty') ){
+        //if sonic collects the first ring, generate random ring positions after.
+        var r = generateRandom(1, 225);
+        var collectRing = document.createElement("img");
+        collectRing.src = "img/ring.gif";
+        collectRing.setAttribute("alt", "Collect Ring");
+        collectRing.setAttribute("id", "collectRing");
+        box[r].appendChild(collectRing);
+        box[r].style.position = "relative";
+    }
 }
 
 function generateRandom(min, max) {
     var num = Math.floor(Math.random() * (max - min + 1)) + min;
     return (num === 108) ? generateRandom(min, max) : num;
 }
-
-//On window loadup make r = 116, and then randomly generate ring position.
-
-var r = generateRandom(1, 225);
-var collectRing = document.createElement("img");
-collectRing.src = "img/ring.gif";
-collectRing.setAttribute("alt", "Collect Ring");
-collectRing.setAttribute("id", "collectRing");
-box[r].appendChild(collectRing);
-box[r].style.position = "relative";
-
 
 //Arrow keys - Rotation and Movement of Avatar - Figure out rotations based on movement
 document.onkeydown = function(evt) {
