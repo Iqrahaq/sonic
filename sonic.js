@@ -43,16 +43,17 @@ for(var i=0;i<225;i++){
         box[i].style.position = "relative";
     }
 
-    if(i == 116 && $('#box[i]').is(':empty') ){
-        //if sonic collects the first ring, generate random ring positions after.
-        var r = generateRandom(1, 225);
-        var collectRing = document.createElement("img");
-        collectRing.src = "img/ring.gif";
-        collectRing.setAttribute("alt", "Collect Ring");
-        collectRing.setAttribute("id", "collectRing");
-        box[r].appendChild(collectRing);
-        box[r].style.position = "relative";
-    }
+    //UNCOMMENTING THIS CODE PREVENTS ROTATION + MOVEMENT >> CHECK
+    // if(i == 116 && $('#box[i]').is(':empty') ){
+    //     //if sonic collects the first ring, generate random ring positions after.
+    //     var r = generateRandom(1, 225);
+    //     var collectRing = document.createElement("img");
+    //     collectRing.src = "img/ring.gif";
+    //     collectRing.setAttribute("alt", "Collect Ring");
+    //     collectRing.setAttribute("id", "collectRing");
+    //     box[r].appendChild(collectRing);
+    //     box[r].style.position = "relative";
+    // }
 }
 
 function generateRandom(min, max) {
@@ -65,22 +66,22 @@ document.onkeydown = function(evt) {
     evt = evt || window.event;
     if (evt.keyCode == 37) {
         sonicAvatar.src = 'img/sonic.gif';
-        sonicAvatar.style.transform = "rotate(0deg)";
+        sonicAvatar.style.webkitTransform = "rotate(0deg)";
         moveLeft();
     } else if (evt.keyCode == 38) {
         sonicAvatar.src = 'img/sonic.gif';
-        sonicAvatar.style.transform = "rotate(90deg)";
-        //sonicAvatar.style.transform = "scaleX(-1)";
+        sonicAvatar.style.webkitTransform = "rotate(-90deg)";
+        sonicAvatar.style.webkitTransform = "scaleX(-1)";
         moveUp();
     } else if (evt.keyCode == 39) {
         sonicAvatar.src = 'img/sonic.gif';
-        sonicAvatar.style.transform = "rotate(180deg)";
-        sonicAvatar.style.transform = "scaleX(-1)";
+        sonicAvatar.style.webkitTransform = "rotate(180deg)";
+        sonicAvatar.style.webkitTransform = "scaleX(-1)";
         moveRight();
     } else if (evt.keyCode == 40) {
         sonicAvatar.src = 'img/sonic.gif';
-        sonicAvatar.style.transform = "rotate(-90deg)";
-        //sonicAvatar.style.transform = "scaleY(-1)";
+        sonicAvatar.style.webkitTransform = "rotate(-90deg)";
+        sonicAvatar.style.webkitTransform = "scaleY(-1)";
         moveDown();
     } else if (evt.keyCode == 78) {
         restart();
