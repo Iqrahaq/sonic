@@ -4,6 +4,9 @@
 var box = document.getElementsByClassName("gridBox");
 var sonicAvatar = document.createElement("img");
 
+//Timer function
+
+
 //Duplication of div tags to create 15x15 grid.
 function addDiv(){
     var parent = document.getElementById("gridContainer");
@@ -75,10 +78,12 @@ document.onkeydown = function(evt) {
     } else if (evt.keyCode == 39) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'rotate(0deg)';
-        moveRight();
+        //sonicAvatar.style.maxWidth = '34px';
+        setInterval(moveRight, 5000);
     } else if (evt.keyCode == 40) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'rotate(90deg)';
+        //sonicAvatar.style.maxHeight = '34px';
         moveDown();
     } else if (evt.keyCode == 78) {
         restart();
