@@ -3,9 +3,13 @@
 //Global variables
 var box = document.getElementsByClassName("gridBox");
 var sonicAvatar = document.createElement("img");
+var currentPosition = 0;
 
-//Timer function
-
+//Random number generator for ring position
+function generateRandom(min, max) {
+    var num = Math.floor(Math.random() * (max - min + 1)) + min;
+    return (num === 108) ? generateRandom(min, max) : num;
+}
 
 //Duplication of div tags to create 15x15 grid.
 function addDiv(){
@@ -26,24 +30,25 @@ for(var n=0;n<225;n++){
 }
 
 //On window loadup make r = 116, and then randomly generate ring position.
-window.onload = function(){
-    var r = 116;
+window.onload = function(currentPosition){
+    currentPosition = 116;
     var collectRing = document.createElement("img");
     collectRing.src = "img/ring.gif";
     collectRing.setAttribute("alt", "Collect Ring");
     collectRing.setAttribute("id", "collectRing");
-    box[r].appendChild(collectRing);
-    box[r].style.position = "relative";
+    box[currentPosition].appendChild(collectRing);
+    box[currentPosition].style.position = "relative";
 };
 
 //Sonic and Ring Starting Position.
 for(var i=0;i<225;i++){
     if(i == 108){
+        currentPosition = i;
         sonicAvatar.src = "img/start.gif";
         sonicAvatar.setAttribute("alt", "Sonic Avatar");
         sonicAvatar.setAttribute("id", "sonicAvatar");
-        box[i].appendChild(sonicAvatar);
-        box[i].style.position = "relative";
+        box[currentPosition].appendChild(sonicAvatar);
+        box[currentPosition].style.position = "relative";
     }
 
     //UNCOMMENTING THIS CODE PREVENTS ROTATION + MOVEMENT >> CHECK
@@ -57,15 +62,11 @@ for(var i=0;i<225;i++){
     //     box[r].appendChild(collectRing);
     //     box[r].style.position = "relative";
     // }
-}
 
-function generateRandom(min, max) {
-    var num = Math.floor(Math.random() * (max - min + 1)) + min;
-    return (num === 108) ? generateRandom(min, max) : num;
 }
 
 //Arrow keys - Rotation and Movement of Avatar - Figure out rotations based on movement
-document.onkeydown = function(evt) {
+document.onkeydown = function(evt, currentPosition) {
     evt = evt || window.event;
     if (evt.keyCode == 37) {
         sonicAvatar.src = 'img/sonic.gif';
@@ -79,7 +80,7 @@ document.onkeydown = function(evt) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'rotate(0deg)';
         //sonicAvatar.style.maxWidth = '34px';
-        setInterval(moveRight, 5000);
+        moveRight();
     } else if (evt.keyCode == 40) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'rotate(90deg)';
@@ -88,37 +89,53 @@ document.onkeydown = function(evt) {
     } else if (evt.keyCode == 78) {
         restart();
     }
-    checkEnd();
+    //checkEnd();
 };
 
 //Move Left 1 Box at a time.
 function moveLeft(){
-    for(var i=0;i<225;i--){
-            box[i].appendChild(sonicAvatar);
-            box[i].style.position = "relative";
+    for(var i=0;i<225;i++){
+        (function(i) {
+            setTimeout(function () {
+                box[i].appendChild(sonicAvatar);
+                box[i].style.position = "relative";
+            }, 230*i); // Smooth transition may require change of timer or an alternative approach *!
+        })(i);
     }
 }
 
-//Move Right 1 Box at a time.
-function moveRight(){
+//Move Right 1 Box at a time. Figure out Sonic's current position (var currentPosition) and pass it into the function.
+function moveRight(){ //Move successful - need smooth transition and final hit
     for(var i=0;i<225;i++){
-            box[i].appendChild(sonicAvatar);
-            box[i].style.position = "relative";
+        (function(i) {
+            setTimeout(function () {
+                box[i].appendChild(sonicAvatar);
+                box[i].style.position = "relative";
+            }, 230*i); // Smooth transition may require change of timer or an alternative approach *!
+        })(i);
     }
 }
 
 //Move Up 1 Box at a time.
 function moveUp(){
-    for(var i=0;i<0;i=i-16){
-            box[i].appendChild(sonicAvatar);
-            box[i].style.position = "relative";
+    for(var i=0;i<225;i++){
+        (function(i) {
+            setTimeout(function () {
+                box[i].appendChild(sonicAvatar);
+                box[i].style.position = "relative";
+            }, 230*i); // Smooth transition may require change of timer or an alternative approach *!
+        })(i);
     }
 }
 
 //Move Down 1 Box at a time.
 function moveDown(){
-    for(var i=0;i<225;i=i+16){
-            box[i].appendChild(sonicAvatar);
-            box[i].style.position = "relative";
+    for(var i=0;i<225;i++){
+        (function(i) {
+            setTimeout(function () {
+                box[i].appendChild(sonicAvatar);
+                box[i].style.position = "relative";
+            }, 230*i); // Smooth transition may require change of timer or an alternative approach *!
+        })(i);
     }
 }
