@@ -66,7 +66,7 @@ for(var i=0;i<225;i++){
 }
 
 //Arrow keys - Rotation and Movement of Avatar - Figure out rotations based on movement
-document.onkeydown = function(evt, currentPosition) {
+document.onkeydown = function(evt) {
     evt = evt || window.event;
     if (evt.keyCode == 37) {
         sonicAvatar.src = 'img/sonic.gif';
@@ -111,7 +111,7 @@ function moveRight(currentPosition){ //Move successful - need smooth transition 
             setTimeout(function () {
                 box[i].appendChild(sonicAvatar);
                 box[i].style.position = "relative";
-            }, 230*i); // Smooth transition may require change of timer or an alternative approach *!
+            }, 250*i); // Smooth transition may require change of timer or an alternative approach *!
         })(i);
     }
 }
