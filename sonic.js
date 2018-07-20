@@ -1,4 +1,4 @@
-//Snake
+//Sonic
 
 //Global variables
 var box = document.getElementsByClassName("gridBox");
@@ -29,15 +29,15 @@ for(var n=0;n<225;n++){
    n++;
 }
 
-//On window loadup make r = 116, and then randomly generate ring position.
-window.onload = function(currentPosition){
-    currentPosition = 116;
+//On window loadup make initial ring position = 116, and then randomly generate ring position.
+window.onload = function(){
+    var r = 116;
     var collectRing = document.createElement("img");
     collectRing.src = "img/ring.gif";
     collectRing.setAttribute("alt", "Collect Ring");
     collectRing.setAttribute("id", "collectRing");
-    box[currentPosition].appendChild(collectRing);
-    box[currentPosition].style.position = "relative";
+    box[r].appendChild(collectRing);
+    box[r].style.position = "relative";
 };
 
 //Sonic and Ring Starting Position.
@@ -80,7 +80,7 @@ document.onkeydown = function(evt, currentPosition) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'rotate(0deg)';
         //sonicAvatar.style.maxWidth = '34px';
-        moveRight();
+        moveRight(currentPosition);
     } else if (evt.keyCode == 40) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'rotate(90deg)';
@@ -93,20 +93,20 @@ document.onkeydown = function(evt, currentPosition) {
 };
 
 //Move Left 1 Box at a time.
-function moveLeft(){
-    for(var i=0;i<225;i++){
-        (function(i) {
-            setTimeout(function () {
-                box[i].appendChild(sonicAvatar);
-                box[i].style.position = "relative";
-            }, 230*i); // Smooth transition may require change of timer or an alternative approach *!
-        })(i);
-    }
-}
+// function moveLeft(){
+//     for(var i=0;i<225;i++){
+//         (function(i) {
+//             setTimeout(function () {
+//                 box[i].appendChild(sonicAvatar);
+//                 box[i].style.position = "relative";
+//             }, 230*i); // Smooth transition may require change of timer or an alternative approach *!
+//         })(i);
+//     }
+// }
 
 //Move Right 1 Box at a time. Figure out Sonic's current position (var currentPosition) and pass it into the function.
-function moveRight(){ //Move successful - need smooth transition and final hit
-    for(var i=0;i<225;i++){
+function moveRight(currentPosition){ //Move successful - need smooth transition and final hit
+    for(var i=currentPosition;i<225;i++){
         (function(i) {
             setTimeout(function () {
                 box[i].appendChild(sonicAvatar);
@@ -117,25 +117,25 @@ function moveRight(){ //Move successful - need smooth transition and final hit
 }
 
 //Move Up 1 Box at a time.
-function moveUp(){
-    for(var i=0;i<225;i++){
-        (function(i) {
-            setTimeout(function () {
-                box[i].appendChild(sonicAvatar);
-                box[i].style.position = "relative";
-            }, 230*i); // Smooth transition may require change of timer or an alternative approach *!
-        })(i);
-    }
-}
+// function moveUp(){
+//     for(var i=0;i<225;i++){
+//         (function(i) {
+//             setTimeout(function () {
+//                 box[i].appendChild(sonicAvatar);
+//                 box[i].style.position = "relative";
+//             }, 230*i); // Smooth transition may require change of timer or an alternative approach *!
+//         })(i);
+//     }
+// }
 
 //Move Down 1 Box at a time.
-function moveDown(){
-    for(var i=0;i<225;i++){
-        (function(i) {
-            setTimeout(function () {
-                box[i].appendChild(sonicAvatar);
-                box[i].style.position = "relative";
-            }, 230*i); // Smooth transition may require change of timer or an alternative approach *!
-        })(i);
-    }
-}
+// function moveDown(){
+//     for(var i=0;i<225;i++){
+//         (function(i) {
+//             setTimeout(function () {
+//                 box[i].appendChild(sonicAvatar);
+//                 box[i].style.position = "relative";
+//             }, 230*i); // Smooth transition may require change of timer or an alternative approach *!
+//         })(i);
+//     }
+// }
