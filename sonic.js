@@ -3,7 +3,9 @@
 //Global variables
 var box = document.getElementsByClassName("gridBox");
 var sonicAvatar = document.createElement("img");
-var currentPosition = 0;
+var ringScore = document.getElementById('ringScore');
+var sonicPosition = 0;
+var ringPosition = 0;
 
 //Random number generator for ring position
 function generateRandom(min, max) {
@@ -43,16 +45,16 @@ window.onload = function(){
 //Sonic and Ring Starting Position.
 for(var i=0;i<225;i++){
     if(i == 108){
-        currentPosition = i;
+        sonicPosition = i;
         sonicAvatar.src = "img/start.gif";
         sonicAvatar.setAttribute("alt", "Sonic Avatar");
         sonicAvatar.setAttribute("id", "sonicAvatar");
-        box[currentPosition].appendChild(sonicAvatar);
-        box[currentPosition].style.position = "relative";
+        box[sonicPosition].appendChild(sonicAvatar);
+        box[sonicPosition].style.position = "relative";
     }
 
     //UNCOMMENTING THIS CODE PREVENTS ROTATION + MOVEMENT >> CHECK
-    //if sonicAvatar is in 
+    //if sonicAvatar is in the same div as ring, increase score by 1, random generator begins.
     if(i == 116 && $('#box[i]').is(':empty') ){
         //if sonic collects the first ring, generate random ring positions after.
         var r = generateRandom(1, 225);
@@ -62,8 +64,9 @@ for(var i=0;i<225;i++){
         collectRing.setAttribute("id", "collectRing");
         box[r].appendChild(collectRing);
         box[r].style.position = "relative";
+        //increment score, via for loop
+        ringScore.style.innerText = ''
     }
-
 }
 
 //Arrow keys - Rotation and Movement of Avatar - Figure out rotations based on movement
@@ -81,7 +84,7 @@ document.onkeydown = function(evt) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'rotate(0deg)';
         //sonicAvatar.style.maxWidth = '34px';
-        moveRight(currentPosition);
+        moveRight(sonicPosition);
     } else if (evt.keyCode == 40) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'rotate(90deg)';
@@ -105,9 +108,9 @@ document.onkeydown = function(evt) {
 //     }
 // }
 
-//Move Right 1 Box at a time. Figure out Sonic's current position (var currentPosition) and pass it into the function.
-function moveRight(currentPosition){ //Move successful - need smooth transition and final hit
-    for(var i=currentPosition;i<225;i++){
+//Move Right 1 Box at a time. Figure out Sonic's current position (var sonicPosition) and pass it into the function.
+function moveRight(sonicPosition){ //Move successful - need smooth transition and final hit
+    for(var i=sonicPosition;i<225;i++){
         (function(i) {
             setTimeout(function () {
                 box[i].appendChild(sonicAvatar);
