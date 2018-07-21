@@ -3,15 +3,11 @@
 //Global variables
 var box = document.getElementsByClassName("gridBox");
 var sonicAvatar = document.createElement("img");
-var ringScore = document.getElementById('ringScore');
-var sonicPosition = 0;
-var ringPosition = 0;
+var ringScore = document.getElementById('ringScore').innerText;
+var sonicPosition = 108;
+var ringPosition = 116;
 
-//Random number generator for ring position
-function generateRandom(min, max) {
-    var num = Math.floor(Math.random() * (max - min + 1)) + min;
-    return (num === 108) ? generateRandom(min, max) : num;
-}
+/* Game Layout - Checkered Grid */
 
 //Duplication of div tags to create 15x15 grid.
 function addDiv(){
@@ -25,49 +21,55 @@ for(var i=0;i<225;i++){
     addDiv();
 }
 
-//Checkered grid
 for(var n=0;n<225;n++){
    box[n].style.backgroundColor = "black";
    n++;
 }
 
-//On window loadup make initial ring position = 116, and then randomly generate ring position.
-window.onload = function(){
-    var r = 116;
+//Random number generator for ring position
+function generateRandom(min, max) {
+    var num = Math.floor(Math.random() * (max - min + 1)) + min;
+    return (num === 108) ? generateRandom(min, max) : num;
+}
+
+//On window loadup make initial ring position = 116.
+window.onload = function(sonicPosition, sonicAvatar){
+
+    //Sonic and Ring Starting Position.
     var collectRing = document.createElement("img");
     collectRing.src = "img/ring.gif";
     collectRing.setAttribute("alt", "Collect Ring");
     collectRing.setAttribute("id", "collectRing");
-    box[r].appendChild(collectRing);
-    box[r].style.position = "relative";
-};
+    box[ringPosition].appendChild(collectRing);
+    box[ringPosition].style.position = "relative";
 
-//Sonic and Ring Starting Position.
-for(var i=0;i<225;i++){
-    if(i == 108){
-        sonicPosition = i;
+    if(sonicPosition == 108){
         sonicAvatar.src = "img/start.gif";
         sonicAvatar.setAttribute("alt", "Sonic Avatar");
         sonicAvatar.setAttribute("id", "sonicAvatar");
         box[sonicPosition].appendChild(sonicAvatar);
         box[sonicPosition].style.position = "relative";
     }
+};
+
+    console.log(sonicPosition);
 
     //UNCOMMENTING THIS CODE PREVENTS ROTATION + MOVEMENT >> CHECK
     //if sonicAvatar is in the same div as ring, increase score by 1, random generator begins.
-    if(i == 116 && $('#box[i]').is(':empty') ){
+    if(sonicPosition == ringPosition){
         //if sonic collects the first ring, generate random ring positions after.
-        var r = generateRandom(1, 225);
-        var collectRing = document.createElement("img");
-        collectRing.src = "img/ring.gif";
-        collectRing.setAttribute("alt", "Collect Ring");
-        collectRing.setAttribute("id", "collectRing");
-        box[r].appendChild(collectRing);
-        box[r].style.position = "relative";
+        // var r = generateRandom(1, 225);
+        // var collectRing = document.createElement("img");
+        // collectRing.src = "img/ring.gif";
+        // collectRing.setAttribute("alt", "Collect Ring");
+        // collectRing.setAttribute("id", "collectRing");
+        // box[r].appendChild(collectRing);
+        // box[r].style.position = "relative";
+
+
         //increment score, via for loop
-        ringScore.style.innerText = ''
+        ringScore++;
     }
-}
 
 //Arrow keys - Rotation and Movement of Avatar - Figure out rotations based on movement
 document.onkeydown = function(evt) {
