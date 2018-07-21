@@ -52,16 +52,17 @@ for(var i=0;i<225;i++){
     }
 
     //UNCOMMENTING THIS CODE PREVENTS ROTATION + MOVEMENT >> CHECK
-    // if(i == 116 && $('#box[i]').is(':empty') ){
-    //     //if sonic collects the first ring, generate random ring positions after.
-    //     var r = generateRandom(1, 225);
-    //     var collectRing = document.createElement("img");
-    //     collectRing.src = "img/ring.gif";
-    //     collectRing.setAttribute("alt", "Collect Ring");
-    //     collectRing.setAttribute("id", "collectRing");
-    //     box[r].appendChild(collectRing);
-    //     box[r].style.position = "relative";
-    // }
+    //if sonicAvatar is in 
+    if(i == 116 && $('#box[i]').is(':empty') ){
+        //if sonic collects the first ring, generate random ring positions after.
+        var r = generateRandom(1, 225);
+        var collectRing = document.createElement("img");
+        collectRing.src = "img/ring.gif";
+        collectRing.setAttribute("alt", "Collect Ring");
+        collectRing.setAttribute("id", "collectRing");
+        box[r].appendChild(collectRing);
+        box[r].style.position = "relative";
+    }
 
 }
 
