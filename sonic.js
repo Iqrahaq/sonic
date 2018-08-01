@@ -4,6 +4,7 @@
 var box = document.getElementsByClassName("gridBox");
 var sonicAvatar = document.createElement("img");
 var ringScore = document.getElementById('ringScore').innerText;
+//Initial positions.
 var sonicPosition = 108;
 var ringPosition = 116;
 
@@ -32,7 +33,6 @@ function generateRandom(min, max) {
     return (num === 108) ? generateRandom(min, max) : num;
 }
 
-//On window loadup make initial ring position = 116.
 window.onload = function(sonicPosition, sonicAvatar){
 
     //Sonic and Ring Starting Position.
@@ -42,21 +42,24 @@ window.onload = function(sonicPosition, sonicAvatar){
     collectRing.setAttribute("id", "collectRing");
     box[ringPosition].appendChild(collectRing);
     box[ringPosition].style.position = "relative";
-
-    if(sonicPosition == 108){
-        sonicAvatar.src = "img/start.gif";
-        sonicAvatar.setAttribute("alt", "Sonic Avatar");
-        sonicAvatar.setAttribute("id", "sonicAvatar");
-        box[sonicPosition].appendChild(sonicAvatar);
-        box[sonicPosition].style.position = "relative";
-    }
+    
+    sonicAvatar.src = "img/start.gif";
+    sonicAvatar.setAttribute("alt", "Sonic Avatar");
+    sonicAvatar.setAttribute("id", "sonicAvatar");
+    box[sonicPosition].appendChild(sonicAvatar);
+    box[sonicPosition].style.position = "relative";
+    
 };
 
     console.log(sonicPosition);
 
     //UNCOMMENTING THIS CODE PREVENTS ROTATION + MOVEMENT >> CHECK
     //if sonicAvatar is in the same div as ring, increase score by 1, random generator begins.
-    if(sonicPosition == ringPosition){
+    //if(sonicPosition == ringPosition){
+
+        //increment score, via for loop
+        //ringScore++;
+
         //if sonic collects the first ring, generate random ring positions after.
         // var r = generateRandom(1, 225);
         // var collectRing = document.createElement("img");
@@ -66,10 +69,7 @@ window.onload = function(sonicPosition, sonicAvatar){
         // box[r].appendChild(collectRing);
         // box[r].style.position = "relative";
 
-
-        //increment score, via for loop
-        ringScore++;
-    }
+    //}
 
 //Arrow keys - Rotation and Movement of Avatar - Figure out rotations based on movement
 document.onkeydown = function(evt) {
