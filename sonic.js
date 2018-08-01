@@ -3,6 +3,7 @@
 //Global variables
 var box = document.getElementsByClassName("gridBox");
 var sonicAvatar = document.createElement("img");
+var ringAvatar = document.createElement("img");
 var ringScore = document.getElementById('ringScore').innerText;
 //Initial positions.
 var sonicPosition = 108;
@@ -33,16 +34,15 @@ function generateRandom(min, max) {
     return (num === 108) ? generateRandom(min, max) : num;
 }
 
-window.onload = function(sonicPosition, sonicAvatar){
+window.onload = function(){
 
     //Sonic and Ring Starting Position.
-    var collectRing = document.createElement("img");
-    collectRing.src = "img/ring.gif";
-    collectRing.setAttribute("alt", "Collect Ring");
-    collectRing.setAttribute("id", "collectRing");
-    box[ringPosition].appendChild(collectRing);
+    ringAvatar.src = "img/ring.gif";
+    ringAvatar.setAttribute("alt", "Ring Avatar");
+    ringAvatar.setAttribute("id", "ringAvatar");
+    box[ringPosition].appendChild(ringAvatar);
     box[ringPosition].style.position = "relative";
-    
+
     sonicAvatar.src = "img/start.gif";
     sonicAvatar.setAttribute("alt", "Sonic Avatar");
     sonicAvatar.setAttribute("id", "sonicAvatar");
@@ -55,10 +55,10 @@ window.onload = function(sonicPosition, sonicAvatar){
 
     //UNCOMMENTING THIS CODE PREVENTS ROTATION + MOVEMENT >> CHECK
     //if sonicAvatar is in the same div as ring, increase score by 1, random generator begins.
-    //if(sonicPosition == ringPosition){
+    if(sonicPosition == ringPosition){
 
         //increment score, via for loop
-        //ringScore++;
+        ringScore++;
 
         //if sonic collects the first ring, generate random ring positions after.
         // var r = generateRandom(1, 225);
@@ -69,7 +69,7 @@ window.onload = function(sonicPosition, sonicAvatar){
         // box[r].appendChild(collectRing);
         // box[r].style.position = "relative";
 
-    //}
+    }
 
 //Arrow keys - Rotation and Movement of Avatar - Figure out rotations based on movement
 document.onkeydown = function(evt) {
@@ -110,7 +110,8 @@ document.onkeydown = function(evt) {
 //     }
 // }
 
-//Move Right 1 Box at a time. Figure out Sonic's current position (var sonicPosition) and pass it into the function.
+/* Move Right 1 Box at a time. Figure out Sonic's current position (var sonicPosition) 
+   and pass it into the function. */
 function moveRight(sonicPosition){ //Move successful - need smooth transition and final hit
     for(var i=sonicPosition;i<225;i++){
         (function(i) {
