@@ -1,8 +1,12 @@
+/** Sonic CSS **/
+
+/** Try to center game on page **/
+
 body{
     margin: 3px;
 }
 
-.statsBar, #ring, #top {
+.scoreBar, #ring, #top {
     display: flex;
     flex-direction: row;
     position: relative;
@@ -26,7 +30,7 @@ body{
     padding-bottom: 0;
 }
 
-.statsBar{
+.scoreBar{
     margin: auto;
 }
 
@@ -42,9 +46,30 @@ body{
     max-height: 44px;
 }
 
+#purpleWorldRing, #redWorldRing, #greenWorldRing, 
+#yellowWorldRing, #aquaWorldRing{
+    max-height: 44px;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-bottom: 5px;
+}
+
+#blueWorldRing{
+    max-height: 44px;
+    margin-left: 29px;
+    margin-right: 12px;
+    margin-bottom: 5px;
+}
+
+#whiteWorldRing{
+    max-height: 44px;
+    margin-right: 29px;
+    margin-left: 12px;
+    margin-bottom: 5px;
+}
+
 #sonicLogoImage{
     max-height: 45px;
-    
 }
 
 #ringScore, #topScore{
@@ -102,3 +127,4 @@ body{
 
 
 /** media queries **/
+/** Find previous examples of media queries for this **/

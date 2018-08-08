@@ -1,10 +1,10 @@
-//Sonic
+//Sonic JavaScript
 
 //Global variables
 var box = document.getElementsByClassName("gridBox");
 var sonicAvatar = document.createElement("img");
 var ringAvatar = document.createElement("img");
-var ringScore = document.getElementById('ringScore').innerText;
+var ringScore = document.getElementById('ringScore');
 //Initial positions.
 var sonicPosition = 108;
 var ringPosition = 116;
@@ -34,6 +34,79 @@ function generateRandom(min, max) {
     return (num === 108) ? generateRandom(min, max) : num;
 }
 
+function scoreIncrement(){
+
+    //if sonicAvatar is in the same div as ring, increase score by 1, random generator begins.
+    if(sonicPosition == (ringPosition+1)){
+        var score = ringScore.innerHTML;
+        score++;
+        ringScore.innerHTML = score;
+
+        //if sonic collects the first ring, generate random ring positions after.
+        ringPosition = generateRandom(1, 225);
+        box[ringPosition].appendChild(ringAvatar);
+        box[ringPosition].style.position = "relative";
+    }
+}
+
+function topScoreIncrement(){ //Check if this works !!!
+
+    //Increment topScore if the current score is larger.
+    if(currentScore > topScore){
+        var currentScore = document.getElementById('ringScore');
+        var topScore = document.getElementById('topScore');
+
+        topScore.innerHTML = ringScore.innerHTML;
+    }
+}
+
+function worldRings(){
+    
+    //Blue World Ring
+    if (ringScore.innerHTML == 1){
+        var blueRing = document.getElementById('blueWorldRing');
+        blueRing.src = "img/blue.gif";
+        break; //Figure out how to stop gif image from constantly loading.
+    }
+
+    //Purple World Ring
+    if (ringScore.innerHTML == 2){
+        var purpleRing = document.getElementById('purpleWorldRing');
+        purpleRing.src = "img/purple.gif";
+    }
+
+    //Red World Ring
+    if (ringScore.innerHTML == 3){
+        var redRing = document.getElementById('redWorldRing');
+        redRing.src = "img/red.gif";
+    }
+
+    //Green World Ring
+    if (ringScore.innerHTML == 40){
+        var greenRing = document.getElementById('greenWorldRing');
+        greenRing.src = "img/green.gif";
+    }
+
+    //Yellow World Ring
+    if (ringScore.innerHTML == 50){
+        var yellowRing = document.getElementById('yellowWorldRing');
+        yellowRing.src = "img/yellow.gif";
+    }
+
+    //Aqua World Ring
+    if (ringScore.innerHTML == 60){
+        var aquaRing = document.getElementById('aquaWorldRing');
+        aquaRing.src = "img/aqua.gif";
+    }
+
+    //White World Ring
+    if (ringScore.innerHTML == 70){
+        var whiteRing = document.getElementById('whiteWorldRing');
+        whiteRing.src = "img/white.gif";
+    }
+}
+
+
 window.onload = function(){
 
     //Sonic and Ring Starting Position.
@@ -51,26 +124,6 @@ window.onload = function(){
     
 };
 
-    console.log(sonicPosition);
-
-    //UNCOMMENTING THIS CODE PREVENTS ROTATION + MOVEMENT >> CHECK
-    //if sonicAvatar is in the same div as ring, increase score by 1, random generator begins.
-    if(sonicPosition == ringPosition){
-
-        //increment score, via for loop
-        ringScore++;
-
-        //if sonic collects the first ring, generate random ring positions after.
-        // var r = generateRandom(1, 225);
-        // var collectRing = document.createElement("img");
-        // collectRing.src = "img/ring.gif";
-        // collectRing.setAttribute("alt", "Collect Ring");
-        // collectRing.setAttribute("id", "collectRing");
-        // box[r].appendChild(collectRing);
-        // box[r].style.position = "relative";
-
-    }
-
 //Arrow keys - Rotation and Movement of Avatar - Figure out rotations based on movement
 document.onkeydown = function(evt) {
     evt = evt || window.event;
@@ -86,7 +139,7 @@ document.onkeydown = function(evt) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'rotate(0deg)';
         //sonicAvatar.style.maxWidth = '34px';
-        moveRight(sonicPosition);
+        moveRight();
     } else if (evt.keyCode == 40) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'rotate(90deg)';
@@ -96,28 +149,35 @@ document.onkeydown = function(evt) {
         restart();
     }
     //checkEnd();
+    if(sonicPosition == 225){ //Check if this works !!!
+        topScoreIncrement();
+    }
 };
 
-//Move Left 1 Box at a time.
-// function moveLeft(){
-//     for(var i=0;i<225;i++){
-//         (function(i) {
-//             setTimeout(function () {
-//                 box[i].appendChild(sonicAvatar);
-//                 box[i].style.position = "relative";
-//             }, 230*i); // Smooth transition may require change of timer or an alternative approach *!
-//         })(i);
-//     }
-// }
-
-/* Move Right 1 Box at a time. Figure out Sonic's current position (var sonicPosition) 
-   and pass it into the function. */
-function moveRight(sonicPosition){ //Move successful - need smooth transition and final hit
-    for(var i=sonicPosition;i<225;i++){
+//Move Left 1 Box at a time. -- FIX THIS (Movement is incorrect.)
+function moveLeft(){
+    for(var i=sonicPosition;i>=225;i--){
         (function(i) {
             setTimeout(function () {
                 box[i].appendChild(sonicAvatar);
                 box[i].style.position = "relative";
+                sonicPosition--;
+                scoreIncrement();
+            }, 250*i); // Smooth transition may require change of timer or an alternative approach *!
+        })(i);
+    }
+}
+
+/* Move Right 1 Box at a time. -- FIX THIS (Remove initial delay.) */
+function moveRight(){
+    for(var i=sonicPosition;i<=225;i++){
+        (function(i) {
+            setTimeout(function () {
+                box[i].appendChild(sonicAvatar);
+                box[i].style.position = "relative";
+                sonicPosition++;
+                scoreIncrement();
+                worldRings();
             }, 250*i); // Smooth transition may require change of timer or an alternative approach *!
         })(i);
     }
@@ -146,3 +206,17 @@ function moveRight(sonicPosition){ //Move successful - need smooth transition an
 //         })(i);
 //     }
 // }
+
+//If Sonic enters the side boxes, after a certain delay there will be a hit.
+//Facing up = 0 - 14
+//Facing Down = 225 - 239
+//Facing Left = 0,15,30,45 ... 225
+//Facing Right = 14,29,44,... - 239
+
+// -----> Change sonic avatar
+// -----> Reset score
+// -----> Update top score if applicable
+
+//Sound effects
+
+//Leaderboard
