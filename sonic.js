@@ -61,48 +61,54 @@ function topScoreIncrement(){ //Check if this works !!!
 }
 
 function worldRings(){
-    
-    //Blue World Ring
-    if (ringScore.innerHTML == 1){
-        var blueRing = document.getElementById('blueWorldRing');
-        blueRing.src = "img/blue.gif";
-        break; //Figure out how to stop gif image from constantly loading.
-    }
+    var blueRing = document.getElementById('blueWorldRing');
+    var purpleRing = document.getElementById('purpleWorldRing');
+    var redRing = document.getElementById('redWorldRing');
+    var greenRing = document.getElementById('greenWorldRing');
+    var yellowRing = document.getElementById('yellowWorldRing');
+    var aquaRing = document.getElementById('aquaWorldRing');
+    var whiteRing = document.getElementById('whiteWorldRing');
 
+    //Blue World Ring
+    if ((ringScore.innerHTML == 10) && (blueRing.getAttribute("alt") != "Blue World Ring")){
+        blueRing.src = "img/blue.gif";
+        blueRing.setAttribute("alt", "Blue World Ring");
+    }
+    
     //Purple World Ring
-    if (ringScore.innerHTML == 2){
-        var purpleRing = document.getElementById('purpleWorldRing');
+    if ((ringScore.innerHTML == 20) && (purpleRing.getAttribute("alt") != "Purple World Ring")){
         purpleRing.src = "img/purple.gif";
+        purpleRing.setAttribute("alt", "Purple World Ring");
     }
 
     //Red World Ring
-    if (ringScore.innerHTML == 3){
-        var redRing = document.getElementById('redWorldRing');
+    if ((ringScore.innerHTML == 30) && (redRing.getAttribute("alt") != "Red World Ring")){
         redRing.src = "img/red.gif";
+        redRing.setAttribute("alt", "Red World Ring");
     }
 
     //Green World Ring
-    if (ringScore.innerHTML == 40){
-        var greenRing = document.getElementById('greenWorldRing');
+    if ((ringScore.innerHTML == 40) && (greenRing.getAttribute("alt") != "Green World Ring")){
         greenRing.src = "img/green.gif";
+        greenRing.setAttribute("alt", "Green World Ring");
     }
 
     //Yellow World Ring
-    if (ringScore.innerHTML == 50){
-        var yellowRing = document.getElementById('yellowWorldRing');
+    if ((ringScore.innerHTML == 50) && (yellowRing.getAttribute("alt") != "Yellow World Ring")){
         yellowRing.src = "img/yellow.gif";
+        yellowRing.setAttribute("alt", "Yellow World Ring");
     }
 
     //Aqua World Ring
-    if (ringScore.innerHTML == 60){
-        var aquaRing = document.getElementById('aquaWorldRing');
+    if ((ringScore.innerHTML == 60) && (aquaRing.getAttribute("alt") != "Aqua World Ring")){
         aquaRing.src = "img/aqua.gif";
+        aquaRing.setAttribute("alt", "Aqua World Ring");
     }
 
     //White World Ring
-    if (ringScore.innerHTML == 70){
-        var whiteRing = document.getElementById('whiteWorldRing');
+    if ((ringScore.innerHTML == 70) && (whiteRing.getAttribute("alt") != "White World Ring")){
         whiteRing.src = "img/white.gif";
+        whiteRing.setAttribute("alt", "White World Ring");
     }
 }
 
@@ -130,21 +136,21 @@ document.onkeydown = function(evt) {
     if (evt.keyCode == 37) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'scaleX(-1)';
-        moveLeft();
+        moveLeft(sonicPosition);
     } else if (evt.keyCode == 38) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'rotate(-90deg)';
-        moveUp();
+        moveUp(sonicPosition);
     } else if (evt.keyCode == 39) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'rotate(0deg)';
         //sonicAvatar.style.maxWidth = '34px';
-        moveRight();
+        moveRight(sonicPosition);
     } else if (evt.keyCode == 40) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'rotate(90deg)';
         //sonicAvatar.style.maxHeight = '34px';
-        moveDown();
+        moveDown(sonicPosition);
     } else if (evt.keyCode == 78) {
         restart();
     }
@@ -155,59 +161,118 @@ document.onkeydown = function(evt) {
 };
 
 //Move Left 1 Box at a time. -- FIX THIS (Movement is incorrect.)
-function moveLeft(){
-    for(var i=sonicPosition;i>=225;i--){
+function moveLeft(sonicPosition){
+    var i = 0;
+    while(i < 240){
         (function(i) {
-            setTimeout(function () {
-                box[i].appendChild(sonicAvatar);
-                box[i].style.position = "relative";
-                sonicPosition--;
-                scoreIncrement();
-            }, 250*i); // Smooth transition may require change of timer or an alternative approach *!
-        })(i);
+            setTimeout(function(){
+                if (sonicPosition >= 0){
+                    sonicPosition--; 
+                    box[sonicPosition].appendChild(sonicAvatar);
+                    box[sonicPosition].style.position = "relative";
+                    scoreIncrement();
+                    worldRings();
+                    sonicHit(sonicPosition);
+                }
+            }, 250 * i)
+        })(i++)
     }
 }
 
 /* Move Right 1 Box at a time. -- FIX THIS (Remove initial delay.) */
-function moveRight(){
-    for(var i=sonicPosition;i<=225;i++){
+function moveRight(sonicPosition){
+    var i = 0;
+    while(i < 240){
         (function(i) {
-            setTimeout(function () {
-                box[i].appendChild(sonicAvatar);
-                box[i].style.position = "relative";
-                sonicPosition++;
-                scoreIncrement();
-                worldRings();
-            }, 250*i); // Smooth transition may require change of timer or an alternative approach *!
-        })(i);
+            setTimeout(function(){
+                if (sonicPosition >= 0){
+                    sonicPosition++; 
+                    box[sonicPosition].appendChild(sonicAvatar);
+                    box[sonicPosition].style.position = "relative";
+                    scoreIncrement();
+                    worldRings();
+                    sonicHit(sonicPosition);
+                }
+            }, 250 * i)
+        })(i++)
     }
 }
 
 //Move Up 1 Box at a time.
-// function moveUp(){
-//     for(var i=0;i<225;i++){
-//         (function(i) {
-//             setTimeout(function () {
-//                 box[i].appendChild(sonicAvatar);
-//                 box[i].style.position = "relative";
-//             }, 230*i); // Smooth transition may require change of timer or an alternative approach *!
-//         })(i);
-//     }
-// }
+function moveUp(sonicPosition){
+    var i = 0;
+    while(i < 240){
+        (function(i) {
+            setTimeout(function(){
+                if (sonicPosition >= 0){
+                    sonicPosition=sonicPosition-15; 
+                    box[sonicPosition].appendChild(sonicAvatar);
+                    box[sonicPosition].style.position = "relative";
+                    scoreIncrement();
+                    worldRings();
+                    console.log(sonicPosition);
+                    sonicHit(sonicPosition);
+                }
+            }, 250 * i)
+        })(i++)
+    }
+}
 
 //Move Down 1 Box at a time.
-// function moveDown(){
-//     for(var i=0;i<225;i++){
-//         (function(i) {
-//             setTimeout(function () {
-//                 box[i].appendChild(sonicAvatar);
-//                 box[i].style.position = "relative";
-//             }, 230*i); // Smooth transition may require change of timer or an alternative approach *!
-//         })(i);
-//     }
-// }
+function moveDown(sonicPosition){
+    var i = 0;
+    while(i < 240){
+        (function (i){
+            setTimeout(function () {
+                if (sonicPosition <= 239){
+                    sonicPosition=sonicPosition+15;
+                    box[sonicPosition].appendChild(sonicAvatar);
+                    box[sonicPosition].style.position = "relative";
+                    scoreIncrement();
+                    worldRings();
+                    sonicHit(sonicPosition);
+                }
+            }, 250 * i)
+        })(i++)
+    }
+}
 
 //If Sonic enters the side boxes, after a certain delay there will be a hit.
+function sonicHit(sonicPosition){
+    //If Sonic is in certain top boxes
+    if((0<= sonicPosition <= 14) && (sonicAvatar.style.webkitTransform == 'rotate(-90deg)')){
+        //If Sonic is facing a certain way (Up)
+        sonicAvatar.src = 'img/hit.gif';
+        box[sonicPosition].style.position = "relative";
+    }
+
+    //If Sonic is in certain bottom boxes
+    if(225 <= sonicPosition <= 239){ //Look into this...?
+        //If Sonic is facing a certain way (Down)
+        if(sonicAvatar.style.webkitTransform == 'rotate(90deg)'){
+            sonicAvatar.src = 'img/hit.gif';
+            box[sonicPosition].style.position = "relative";
+        }
+    }
+
+    //If Sonic is in certain left boxes
+    if(sonicPosition == (0 && 225)){ //Look into this...? Incorrect Range
+        //If Sonic is facing a certain way (Down)
+        if(sonicAvatar.style.webkitTransform == 'scaleX(-1)'){
+            sonicAvatar.src = 'img/hit.gif';
+            box[sonicPosition].style.position = "relative";
+        }
+    }
+
+    //If Sonic is in right bottom boxes
+    if(sonicPosition == (14 && 239)){ //Look into this...? Incorrect Range
+        //If Sonic is facing a certain way (Down)
+        if(sonicAvatar.style.webkitTransform == 'rotate(0deg)'){
+            sonicAvatar.src = 'img/hit.gif';
+            box[sonicPosition].style.position = "relative";
+        }
+    }
+}
 //Facing up = 0 - 14
 //Facing Down = 225 - 239
 //Facing Left = 0,15,30,45 ... 225
