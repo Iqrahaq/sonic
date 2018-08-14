@@ -9,6 +9,18 @@ var ringScore = document.getElementById('ringScore');
 var sonicPosition = 108;
 var ringPosition = 116;
 
+
+/* Open */
+function openNav() {
+    document.getElementById("myNav").style.display = "block";
+}
+
+/* Close */
+function closeNav() {
+    document.getElementById("myNav").style.display = "none";
+}
+
+
 /* Game Layout - Checkered Grid */
 
 //Duplication of div tags to create 15x15 grid.
@@ -249,6 +261,9 @@ function sonicHit(){ //FIX ALL OF THIS
 
 
 window.onload = function(){
+
+    openNav();
+    closeNav();
 
     //Sonic and Ring Starting Position.
     ringAvatar.src = "img/ring.gif";
