@@ -34,10 +34,10 @@ function generateRandom(min, max) {
     return (num === 108) ? generateRandom(min, max) : num;
 }
 
-function scoreIncrement(){
+function scoreIncrement(sonicPosition, ringPosition){
 
     //if sonicAvatar is in the same div as ring, increase score by 1, random generator begins.
-    if(sonicPosition == (ringPosition+1)){
+    if(sonicPosition == (ringPosition)){
         var score = ringScore.innerHTML;
         score++;
         ringScore.innerHTML = score;
@@ -55,7 +55,6 @@ function topScoreIncrement(){ //Check if this works !!!
     if(currentScore > topScore){
         var currentScore = document.getElementById('ringScore');
         var topScore = document.getElementById('topScore');
-
         topScore.innerHTML = ringScore.innerHTML;
     }
 }
@@ -71,46 +70,178 @@ function worldRings(){
 
     //Blue World Ring
     if ((ringScore.innerHTML == 10) && (blueRing.getAttribute("alt") != "Blue World Ring")){
+        ringAvatar.src = "img/blue.gif";
         blueRing.src = "img/blue.gif";
         blueRing.setAttribute("alt", "Blue World Ring");
     }
     
     //Purple World Ring
     if ((ringScore.innerHTML == 20) && (purpleRing.getAttribute("alt") != "Purple World Ring")){
+        ringAvatar.src = "img/purple.gif";
         purpleRing.src = "img/purple.gif";
         purpleRing.setAttribute("alt", "Purple World Ring");
     }
 
     //Red World Ring
     if ((ringScore.innerHTML == 30) && (redRing.getAttribute("alt") != "Red World Ring")){
+        ringAvatar.src = "img/red.gif";
         redRing.src = "img/red.gif";
         redRing.setAttribute("alt", "Red World Ring");
     }
 
     //Green World Ring
     if ((ringScore.innerHTML == 40) && (greenRing.getAttribute("alt") != "Green World Ring")){
+        ringAvatar.src = "img/green.gif";
         greenRing.src = "img/green.gif";
         greenRing.setAttribute("alt", "Green World Ring");
     }
 
     //Yellow World Ring
     if ((ringScore.innerHTML == 50) && (yellowRing.getAttribute("alt") != "Yellow World Ring")){
+        ringAvatar.src = "img/yellow.gif";
         yellowRing.src = "img/yellow.gif";
         yellowRing.setAttribute("alt", "Yellow World Ring");
     }
 
     //Aqua World Ring
     if ((ringScore.innerHTML == 60) && (aquaRing.getAttribute("alt") != "Aqua World Ring")){
+        ringAvatar.src = "img/aqua.gif";
         aquaRing.src = "img/aqua.gif";
         aquaRing.setAttribute("alt", "Aqua World Ring");
     }
 
     //White World Ring
     if ((ringScore.innerHTML == 70) && (whiteRing.getAttribute("alt") != "White World Ring")){
+        ringAvatar.src = "img/white.gif";
         whiteRing.src = "img/white.gif";
         whiteRing.setAttribute("alt", "White World Ring");
     }
 }
+
+// Move Left 1 Box at a time.
+function moveLeft(){
+    var i = 0;
+    while(i < 240){
+        (function(i) {
+            setTimeout(function(){
+                if (sonicAvatar.style.webkitTransform == 'scaleX(-1)'){
+                    box[sonicPosition].appendChild(sonicAvatar);
+                    sonicPosition--; 
+                    box[sonicPosition].style.position = "relative";
+                    scoreIncrement(sonicPosition, ringPosition);
+                    worldRings();
+                    sonicHit(sonicPosition);
+                }
+            }, 250 * i)
+        })(i++)
+    }
+}
+
+// Move Right 1 Box at a time.
+function moveRight(){
+    var i = 0;
+    while(i < 240){
+        (function(i) {
+            setTimeout(function(){
+                if (sonicAvatar.style.webkitTransform == 'rotate(0deg)'){
+                    box[sonicPosition].appendChild(sonicAvatar);
+                    sonicPosition++;
+                    box[sonicPosition].style.position = "relative";
+                    scoreIncrement(sonicPosition, ringPosition);
+                    worldRings();
+                    sonicHit(sonicPosition);
+                }
+            }, 250 * i)
+        })(i++)
+    }
+}
+
+// Move Up 1 Box at a time.
+function moveUp(){
+    var i = 0;
+    while(i < 240){
+        (function(i) {
+            setTimeout(function(){
+                if (sonicAvatar.style.webkitTransform == 'rotate(-90deg)'){ 
+                    box[sonicPosition].appendChild(sonicAvatar);
+                    sonicPosition=sonicPosition-15;
+                    box[sonicPosition].style.position = "relative";
+                    scoreIncrement(sonicPosition, ringPosition);
+                    worldRings();
+                    sonicHit(sonicPosition);
+                }
+            }, 250 * i)
+        })(i++)
+    }
+}
+
+// Move Down 1 Box at a time.
+function moveDown(){
+    var i = 0;
+    while(i < 240){
+        (function (i){
+            setTimeout(function () {
+                if (sonicAvatar.style.webkitTransform == 'rotate(90deg)'){
+                    box[sonicPosition].appendChild(sonicAvatar);
+                    sonicPosition=sonicPosition+15;
+                    box[sonicPosition].style.position = "relative";
+                    scoreIncrement(sonicPosition, ringPosition);
+                    worldRings();
+                    sonicHit(sonicPosition);
+                }
+            }, 250 * i)
+        })(i++)
+    }
+}
+
+//If Sonic enters the side boxes, after a certain delay there will be a hit.
+function sonicHit(sonicPosition){
+    //If Sonic is in certain top boxes
+    // if((0<= sonicPosition <= 14) && (sonicAvatar.style.webkitTransform == 'rotate(-90deg)')){
+    //     //If Sonic is facing a certain way (Up)
+    //     sonicAvatar.src = 'img/hit.gif';
+    //     box[sonicPosition].style.position = "relative";
+    // }
+
+    // //If Sonic is in certain bottom boxes
+    // if(225 <= sonicPosition <= 239){ //Look into this...?
+    //     //If Sonic is facing a certain way (Down)
+    //     if(sonicAvatar.style.webkitTransform == 'rotate(90deg)'){
+    //         sonicAvatar.src = 'img/hit.gif';
+    //         box[sonicPosition].style.position = "relative";
+    //     }
+    // }
+
+    // //If Sonic is in certain left boxes
+    // if(sonicPosition == (0 && 225)){ //Look into this...? Incorrect Range
+    //     //If Sonic is facing a certain way (Down)
+    //     if(sonicAvatar.style.webkitTransform == 'scaleX(-1)'){
+    //         sonicAvatar.src = 'img/hit.gif';
+    //         box[sonicPosition].style.position = "relative";
+    //     }
+    // }
+
+    // //If Sonic is in right bottom boxes
+    // if(sonicPosition == (14 && 239)){ //Look into this...? Incorrect Range
+    //     //If Sonic is facing a certain way (Down)
+    //     if(sonicAvatar.style.webkitTransform == 'rotate(0deg)'){
+    //         sonicAvatar.src = 'img/hit.gif';
+    //         box[sonicPosition].style.position = "relative";
+    //     }
+    // }
+}
+//Facing up = 0 - 14
+//Facing Down = 225 - 239
+//Facing Left = 0,15,30,45 ... 225
+//Facing Right = 14,29,44,... - 239
+
+// -----> Change sonic avatar
+// -----> Reset score
+// -----> Update top score if applicable
+
+//Sound effects
+
+//Leaderboard
 
 
 window.onload = function(){
@@ -133,155 +264,29 @@ window.onload = function(){
 //Arrow keys - Rotation and Movement of Avatar - Figure out rotations based on movement
 document.onkeydown = function(evt) {
     evt = evt || window.event;
-    if (evt.keyCode == 37) {
+    var x = evt.keyCode;
+    if (x == 37) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'scaleX(-1)';
-        moveLeft(sonicPosition);
-    } else if (evt.keyCode == 38) {
+        moveLeft();
+    } else if (x == 38) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'rotate(-90deg)';
-        moveUp(sonicPosition);
-    } else if (evt.keyCode == 39) {
+        moveUp();
+    } else if (x == 39) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'rotate(0deg)';
-        //sonicAvatar.style.maxWidth = '34px';
-        moveRight(sonicPosition);
-    } else if (evt.keyCode == 40) {
+        moveRight();
+    } else if (x == 40) {
         sonicAvatar.src = 'img/sonic.gif';
         sonicAvatar.style.webkitTransform = 'rotate(90deg)';
-        //sonicAvatar.style.maxHeight = '34px';
-        moveDown(sonicPosition);
-    } else if (evt.keyCode == 78) {
-        restart();
+        moveDown();
+    } else if (x == 78) {
+        restart(); //Function to be created and tested
     }
+    //Function to be created and tested
     //checkEnd();
     if(sonicPosition == 225){ //Check if this works !!!
         topScoreIncrement();
     }
 };
-
-//Move Left 1 Box at a time. -- FIX THIS (Movement is incorrect.)
-function moveLeft(sonicPosition){
-    var i = 0;
-    while(i < 240){
-        (function(i) {
-            setTimeout(function(){
-                if (sonicPosition >= 0){
-                    sonicPosition--; 
-                    box[sonicPosition].appendChild(sonicAvatar);
-                    box[sonicPosition].style.position = "relative";
-                    scoreIncrement();
-                    worldRings();
-                    sonicHit(sonicPosition);
-                }
-            }, 250 * i)
-        })(i++)
-    }
-}
-
-/* Move Right 1 Box at a time. -- FIX THIS (Remove initial delay.) */
-function moveRight(sonicPosition){
-    var i = 0;
-    while(i < 240){
-        (function(i) {
-            setTimeout(function(){
-                if (sonicPosition >= 0){
-                    sonicPosition++; 
-                    box[sonicPosition].appendChild(sonicAvatar);
-                    box[sonicPosition].style.position = "relative";
-                    scoreIncrement();
-                    worldRings();
-                    sonicHit(sonicPosition);
-                }
-            }, 250 * i)
-        })(i++)
-    }
-}
-
-//Move Up 1 Box at a time.
-function moveUp(sonicPosition){
-    var i = 0;
-    while(i < 240){
-        (function(i) {
-            setTimeout(function(){
-                if (sonicPosition >= 0){
-                    sonicPosition=sonicPosition-15; 
-                    box[sonicPosition].appendChild(sonicAvatar);
-                    box[sonicPosition].style.position = "relative";
-                    scoreIncrement();
-                    worldRings();
-                    console.log(sonicPosition);
-                    sonicHit(sonicPosition);
-                }
-            }, 250 * i)
-        })(i++)
-    }
-}
-
-//Move Down 1 Box at a time.
-function moveDown(sonicPosition){
-    var i = 0;
-    while(i < 240){
-        (function (i){
-            setTimeout(function () {
-                if (sonicPosition <= 239){
-                    sonicPosition=sonicPosition+15;
-                    box[sonicPosition].appendChild(sonicAvatar);
-                    box[sonicPosition].style.position = "relative";
-                    scoreIncrement();
-                    worldRings();
-                    sonicHit(sonicPosition);
-                }
-            }, 250 * i)
-        })(i++)
-    }
-}
-
-//If Sonic enters the side boxes, after a certain delay there will be a hit.
-function sonicHit(sonicPosition){
-    //If Sonic is in certain top boxes
-    if((0<= sonicPosition <= 14) && (sonicAvatar.style.webkitTransform == 'rotate(-90deg)')){
-        //If Sonic is facing a certain way (Up)
-        sonicAvatar.src = 'img/hit.gif';
-        box[sonicPosition].style.position = "relative";
-    }
-
-    //If Sonic is in certain bottom boxes
-    if(225 <= sonicPosition <= 239){ //Look into this...?
-        //If Sonic is facing a certain way (Down)
-        if(sonicAvatar.style.webkitTransform == 'rotate(90deg)'){
-            sonicAvatar.src = 'img/hit.gif';
-            box[sonicPosition].style.position = "relative";
-        }
-    }
-
-    //If Sonic is in certain left boxes
-    if(sonicPosition == (0 && 225)){ //Look into this...? Incorrect Range
-        //If Sonic is facing a certain way (Down)
-        if(sonicAvatar.style.webkitTransform == 'scaleX(-1)'){
-            sonicAvatar.src = 'img/hit.gif';
-            box[sonicPosition].style.position = "relative";
-        }
-    }
-
-    //If Sonic is in right bottom boxes
-    if(sonicPosition == (14 && 239)){ //Look into this...? Incorrect Range
-        //If Sonic is facing a certain way (Down)
-        if(sonicAvatar.style.webkitTransform == 'rotate(0deg)'){
-            sonicAvatar.src = 'img/hit.gif';
-            box[sonicPosition].style.position = "relative";
-        }
-    }
-}
-//Facing up = 0 - 14
-//Facing Down = 225 - 239
-//Facing Left = 0,15,30,45 ... 225
-//Facing Right = 14,29,44,... - 239
-
-// -----> Change sonic avatar
-// -----> Reset score
-// -----> Update top score if applicable
-
-//Sound effects
-
-//Leaderboard
