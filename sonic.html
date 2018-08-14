@@ -9,32 +9,36 @@
     <link rel="stylesheet" type="text/css" media="screen" href="sonic.css" />
 </head>
 <body>
-    <!--Stats bar-->
-    <div class="scoreBar">
-        <div id="ring">
-            <img src="img/ring.gif" alt="Gold Ring" id="ringScoreImage">
-            <p id="ringScore">0</p>
+    <div id="gameContainer">
+        <!--Overlay Menu Screen-->
+        <div id="overlay"></div> 
+        <!--Stats bar-->
+        <div class="scoreBar">
+            <div id="ring">
+                <img src="img/ring.gif" alt="Gold Ring" id="ringScoreImage">
+                <p id="ringScore">0</p>
+            </div>
+            <div id="logo">
+                <img src="img/logo.png" alt="Sonic Logo" id="sonicLogoImage">
+            </div>
+            <div id="top">
+                <p id = "topScore">0</p>
+                <img src="img/trophy.png" alt="Score Trophy" id="topScoreImage">
+            </div>
         </div>
-        <div id="logo">
-            <img src="img/logo.png" alt="Sonic Logo" id="sonicLogoImage">
+        <!-- 15 x 15 grid-->
+        <div id="gridContainer"></div>
+        <!-- World rings location (Shadowed until collection). -->
+        <div class="scoreBar">
+            <!--<div class="worldRing"></div>-->
+            <img src="img/shadow.gif" alt="World Ring" id="blueWorldRing">
+            <img src="img/shadow.gif" alt="World Ring" id="purpleWorldRing">
+            <img src="img/shadow.gif" alt="World Ring" id="redWorldRing">
+            <img src="img/shadow.gif" alt="World Ring" id="greenWorldRing">
+            <img src="img/shadow.gif" alt="World Ring" id="yellowWorldRing">
+            <img src="img/shadow.gif" alt="World Ring" id="aquaWorldRing">
+            <img src="img/shadow.gif" alt="World Ring" id="whiteWorldRing">
         </div>
-        <div id="top">
-            <p id = "topScore">0</p>
-            <img src="img/trophy.png" alt="Score Trophy" id="topScoreImage">
-        </div>
-    </div>
-    <!-- 15 x 15 grid-->
-    <div id="gridContainer"></div>
-    <!-- World rings location (Shadowed until collection). -->
-    <div class="scoreBar">
-        <!--<div class="worldRing"></div>-->
-        <img src="img/shadow.gif" alt="World Ring" id="blueWorldRing">
-        <img src="img/shadow.gif" alt="World Ring" id="purpleWorldRing">
-        <img src="img/shadow.gif" alt="World Ring" id="redWorldRing">
-        <img src="img/shadow.gif" alt="World Ring" id="greenWorldRing">
-        <img src="img/shadow.gif" alt="World Ring" id="yellowWorldRing">
-        <img src="img/shadow.gif" alt="World Ring" id="aquaWorldRing">
-        <img src="img/shadow.gif" alt="World Ring" id="whiteWorldRing">
     </div>
 </body>
     <script src="sonic.js"></script>
