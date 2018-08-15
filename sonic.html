@@ -11,7 +11,16 @@
 <body>
     <div id="gameContainer">
         <!--Overlay Menu Screen-->
-        <div id="overlay"></div> 
+        <div id="navigation" class="overlay">
+            <a href="javascript:void(0)" class="closeButton" onclick="closeNav()">&times;</a>
+            
+            <!--Overlay content-->
+            <div class="overlayContent">
+                <p>Enter Name</p>
+                <input type="text" name="playerName" id="playerName">
+                <a href="#">Click to Play</a>
+            </div>
+        </div>
         <!--Stats bar-->
         <div class="scoreBar">
             <div id="ring">
