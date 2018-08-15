@@ -261,7 +261,6 @@ function sonicHit(){ //FIX ALL OF THIS
 window.onload = function(){
 
     openNav();
-    closeNav();
 
     var topScoreText = localStorage.getItem("topScore");
     topScore.innerHTML = topScoreText;
