@@ -5,6 +5,7 @@ var box = document.getElementsByClassName("gridBox");
 var sonicAvatar = document.createElement("img");
 var ringAvatar = document.createElement("img");
 var ringScore = document.getElementById('ringScore');
+var topScore = document.getElementById('topScore');
 //Initial positions.
 var sonicPosition = 108;
 var ringPosition = 116;
@@ -12,12 +13,12 @@ var ringPosition = 116;
 
 /* Open */
 function openNav() {
-    document.getElementById("myNav").style.display = "block";
+    document.getElementById("navigation").style.display = "block";
 }
 
 /* Close */
 function closeNav() {
-    document.getElementById("myNav").style.display = "none";
+    document.getElementById("navigation").style.display = "none";
 }
 
 
@@ -64,11 +65,12 @@ function scoreIncrement(){  //Vigorous test required jic.
 function topScoreIncrement(){ //Check if this works !!!
 
     //Increment topScore if the current score is larger.
-    if(currentScore > topScore){
-        var currentScore = document.getElementById('ringScore');
-        var topScore = document.getElementById('topScore');
+    if(ringScore.innerHTML > topScore.innerHTML){
         topScore.innerHTML = ringScore.innerHTML;
+        var topScoreText = topScore.innerHTML // store top score
+        localStorage.setItem("topScore", topScoreText);
     }
+    ringScore.innerHTML = "0";
 }
 
 function worldRings(){
@@ -214,6 +216,7 @@ function sonicHit(){ //FIX ALL OF THIS
         //If Sonic is facing a certain way (Up)
         sonicAvatar.src = 'img/hit.gif';
         box[sonicPosition].style.position = "relative";
+        topScoreIncrement();
     }
 
     //If Sonic is in certain bottom boxes
@@ -221,6 +224,7 @@ function sonicHit(){ //FIX ALL OF THIS
         //If Sonic is facing a certain way (Down)
         sonicAvatar.src = 'img/hit.gif';
         box[sonicPosition].style.position = "relative";
+        topScoreIncrement();
     }
 
     //If Sonic is in certain left boxes
@@ -230,6 +234,7 @@ function sonicHit(){ //FIX ALL OF THIS
             if(sonicAvatar.style.webkitTransform == 'scaleX(-1)'){
                 sonicAvatar.src = 'img/hit.gif';
                 box[sonicPosition].style.position = "relative";
+                topScoreIncrement();
             }
         }
     }
@@ -241,19 +246,12 @@ function sonicHit(){ //FIX ALL OF THIS
             if(sonicAvatar.style.webkitTransform == 'rotate(0deg)'){
                 sonicAvatar.src = 'img/hit.gif';
                 box[sonicPosition].style.position = "relative";
+                topScoreIncrement();
             }
         }
     }
     
 }
-//Facing up = 0 - 14
-//Facing Down = 225 - 239
-//Facing Left = 0,15,30,45 ... 225
-//Facing Right = 14,29,44,... - 239
-
-// -----> Change sonic avatar
-// -----> Reset score
-// -----> Update top score if applicable
 
 //Sound effects ???
 
@@ -264,6 +262,9 @@ window.onload = function(){
 
     openNav();
     closeNav();
+
+    var topScoreText = localStorage.getItem("topScore");
+    topScore.innerHTML = topScoreText;
 
     //Sonic and Ring Starting Position.
     ringAvatar.src = "img/ring.gif";
