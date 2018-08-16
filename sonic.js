@@ -14,12 +14,39 @@ var ringPosition = 116;
 /* Open */
 function openNav() {
     document.getElementById("navigation").style.display = "block";
-    document.getElementById("startGame").onclick = "closeNav()";
+    document.getElementById("leaderBoard").style.display = "none";
+    document.onkeydown = function(evt) {
+        evt = evt || window.event;
+        var x = evt.keyCode;
+        if (x === 38 || x === 40) {
+            return false;
+        }
+    };
 }
 
 /* Close */
 function closeNav() {
     document.getElementById("navigation").style.display = "none";
+    document.onkeydown = function(evt) {
+        evt = evt || window.event;
+        var x = evt.keyCode;
+        if (x === 38 || x === 40) {
+            return true;
+        }
+    };
+}
+
+/* Open */
+function openBoard() {
+    document.getElementById("leaderBoard").style.display = "block";
+    document.getElementById("navigation").style.display = "none";
+    document.onkeydown = function(evt) {
+        evt = evt || window.event;
+        var x = evt.keyCode;
+        if (x === 38 || x === 40) {
+            return false;
+        }
+    };
 }
 
 
@@ -310,3 +337,17 @@ document.onkeydown = function(evt) {
         topScoreIncrement();
     }
 };
+
+// Get the input field
+var input = document.getElementById("startGame");
+
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+  // Cancel the default action, if needed
+  event.preventDefault();
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Trigger the button element with a click
+    document.getElementById("startGame").click();
+  }
+});

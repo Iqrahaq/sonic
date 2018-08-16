@@ -42,7 +42,7 @@ html, body{
 
 .overlayContent > p{
     margin-bottom: 30px;
-    color: #818181;
+    color: #f1f1f1cf;
     font-size: 30px;
     font-weight: 200;
 }
@@ -51,15 +51,11 @@ html, body{
     padding: 4px;
     border-radius: 4px;
     text-align: center;
-    width: 15%;
+    width: 300px;
     height: 20px;
     font-size: 15px;
     font-weight: 200;
     font-family: "Comic Sans MS", cursive, sans-serif;
-}
-
-#startGame{
-    margin-top: 40px;
 }
 
 /* The navigation links inside the overlay */
@@ -78,8 +74,8 @@ html, body{
 }
 
 /* When you click the navigation links, change their color */
-.overlay a:click {
-    color: #b7b7b7;
+.overlay a:active {
+    color: #818181;
 }
 
 /* Position the close button (top right corner) */
@@ -91,11 +87,18 @@ html, body{
 }
 
 /* Position the leaderboard button (top left corner) */
-.overlay .leaderBoard{
+.overlay .leaderboardButton{
     position: absolute;
     top: 35px;
     left: 45px;
     font-size: 45px;
+}
+
+#startGame{
+    margin-top: 40px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .scoreBar, #ring, #top {
