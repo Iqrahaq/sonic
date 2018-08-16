@@ -1,22 +1,26 @@
 /** Sonic CSS **/
 
+html, body{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    height: 100%;
+    margin: 0;
+}
+
 /** Try to center game on page **/
 #gameContainer{
-    height: 100%;
-
     position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     margin: auto;
+
 }
+
 /* The Overlay (background) */
 .overlay {
     /* Height & width depends on how you want to reveal the overlay (see JS below) */    
     height: 100%;
-    width: 0;
+    width: 100%;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -36,11 +40,33 @@
     margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
 }
 
+.overlayContent > p{
+    margin-bottom: 30px;
+    color: #818181;
+    font-size: 30px;
+    font-weight: 200;
+}
+
+#playerName{
+    padding: 4px;
+    border-radius: 4px;
+    text-align: center;
+    width: 15%;
+    height: 20px;
+    font-size: 15px;
+    font-weight: 200;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+#startGame{
+    margin-top: 40px;
+}
+
 /* The navigation links inside the overlay */
 .overlay a {
     padding: 8px;
     text-decoration: none;
-    font-size: 36px;
+    font-size: 30px;
     color: #818181;
     display: block; /* Display block instead of inline */
     transition: 0.3s; /* Transition effects on hover (color) */
@@ -51,12 +77,25 @@
     color: #f1f1f1;
 }
 
+/* When you click the navigation links, change their color */
+.overlay a:click {
+    color: #b7b7b7;
+}
+
 /* Position the close button (top right corner) */
-.overlay .closeButton {
+.overlay .closeButton{
     position: absolute;
-    top: 20px;
+    top: 1px;
     right: 45px;
     font-size: 60px;
+}
+
+/* Position the leaderboard button (top left corner) */
+.overlay .leaderBoard{
+    position: absolute;
+    top: 35px;
+    left: 45px;
+    font-size: 45px;
 }
 
 .scoreBar, #ring, #top {

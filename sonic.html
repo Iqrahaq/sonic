@@ -9,18 +9,19 @@
     <link rel="stylesheet" type="text/css" media="screen" href="sonic.css" />
 </head>
 <body>
-    <div id="gameContainer">
-        <!--Overlay Menu Screen-->
-        <div id="navigation" class="overlay">
-            <a href="javascript:void(0)" class="closeButton" onclick="closeNav()">&times;</a>
-            
-            <!--Overlay content-->
-            <div class="overlayContent">
-                <p>Enter Name</p>
-                <input type="text" name="playerName" id="playerName">
-                <a href="#">Click to Play</a>
-            </div>
+    <!--Overlay Menu Screen-->
+    <div id="navigation" class="overlay">
+        <a href="javascript:void(0)" class="closeButton" onclick="closeNav()">&times;</a>
+        <a href="javascript:void(0)" class="leaderBoard" style="font-family:Webdings" onclick="">&#252;</a>
+        <!--Overlay content-->
+        <div class="overlayContent">
+            <img src="img/menuLogo.png" alt="Sonic Logo">
+            <p>Type a Name</p>
+            <input type="text" name="playerName" id="playerName">
+            <a href="#" id="startGame">Enter</a>
         </div>
+    </div>
+    <div id="gameContainer">
         <!--Stats bar-->
         <div class="scoreBar">
             <div id="ring">

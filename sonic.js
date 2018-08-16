@@ -14,6 +14,7 @@ var ringPosition = 116;
 /* Open */
 function openNav() {
     document.getElementById("navigation").style.display = "block";
+    document.getElementById("startGame").onclick = "closeNav()";
 }
 
 /* Close */
