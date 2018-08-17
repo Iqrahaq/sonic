@@ -46,6 +46,9 @@ function openNav() {
         }
     };
     validation.style.display = "none";
+    //Spacebar to skip
+    //Game Instructions
+    //Fade out
 }
 
 /* Open Board -- GET ARROW KEYS TO WORK AGAIN*/
