@@ -11,32 +11,44 @@ var sonicPosition = 108;
 var ringPosition = 116;
 
 
-/* Open */
-function openNav() {
-    document.getElementById("navigation").style.display = "block";
-    document.getElementById("leaderBoard").style.display = "none";
-    document.onkeydown = function(evt) {
-        evt = evt || window.event;
-        var x = evt.keyCode;
-        if (x === 38 || x === 40) {
-            return false;
-        }
-    };
-}
-
-/* Close */
-function closeNav() {
+/* Open Welcome Screen */
+function openWelcome() {
+    document.getElementById("welcome").style.display = "block";
     document.getElementById("navigation").style.display = "none";
-    document.onkeydown = function(evt) {
-        evt = evt || window.event;
-        var x = evt.keyCode;
-        if (x === 38 || x === 40) {
-            return true;
-        }
-    };
+    document.getElementById("leaderBoard").style.display = "none";
 }
 
-/* Open */
+/* Open Navigation*/
+function openNav() {
+    var input = document.getElementById("playerName");
+    var recordName = document.getElementById("recordName");
+    var navigation = document.getElementById("navigation");
+    document.getElementById("welcome").style.display = "none";
+    navigation.style.display = "block";
+    document.getElementById("leaderBoard").style.display = "none";
+
+
+    var para = document.createElement("p");
+    var node = document.createTextNode("Please enter a name!");
+    para.appendChild(node);
+    navigation.appendChild(para);
+    para.setAttribute("id", "validation"); 
+    var validation = document.getElementById("validation"); 
+    validation.style.display = "none";
+
+    recordName.onclick = function(){
+        if (input.value == ""){
+            validation.style.display = "block"; 
+        }
+        else{
+            document.getElementById("navigation").style.display = "none";
+            document.getElementById("welcome").style.display = "none";
+        }
+    };
+    validation.style.display = "none";
+}
+
+/* Open Board -- GET ARROW KEYS TO WORK AGAIN*/
 function openBoard() {
     document.getElementById("leaderBoard").style.display = "block";
     document.getElementById("navigation").style.display = "none";
@@ -44,7 +56,7 @@ function openBoard() {
         evt = evt || window.event;
         var x = evt.keyCode;
         if (x === 38 || x === 40) {
-            return false;
+            return true;
         }
     };
 }
@@ -285,10 +297,17 @@ function sonicHit(){ //FIX ALL OF THIS
 
 //Leaderboard
 
+    openWelcome();
+    
+    window.onload = function(){
 
-window.onload = function(){
-
-    openNav();
+    document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    var x = evt.keyCode;
+        if (x === 38 || x === 40) {
+            return false;
+        }
+    };
 
     var topScoreText = localStorage.getItem("topScore");
     topScore.innerHTML = topScoreText;
@@ -338,16 +357,16 @@ document.onkeydown = function(evt) {
     }
 };
 
-// Get the input field
-var input = document.getElementById("startGame");
+// // Get the input field
+// var input = document.getElementById("startGame");
 
-// Execute a function when the user releases a key on the keyboard
-input.addEventListener("keyup", function(event) {
-  // Cancel the default action, if needed
-  event.preventDefault();
-  // Number 13 is the "Enter" key on the keyboard
-  if (event.keyCode === 13) {
-    // Trigger the button element with a click
-    document.getElementById("startGame").click();
-  }
-});
+// // Execute a function when the user releases a key on the keyboard
+// input.addEventListener("keyup", function(event) {
+//   // Cancel the default action, if needed
+//   event.preventDefault();
+//   // Number 13 is the "Enter" key on the keyboard
+//   if (event.keyCode === 13) {
+//     // Trigger the button element with a click
+//     document.getElementById("startGame").click();
+//   }
+// });

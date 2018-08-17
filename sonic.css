@@ -6,6 +6,81 @@ html, body{
     margin: 0;
 }
 
+.overlayLogo, #validation{
+    margin-top: 25px;
+    font-size: 21px;
+    text-align: center;
+
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
+}
+
+p, input {
+    margin-top: 25px;
+    font-size: 21px;
+    text-align: center;
+
+    -webkit-animation: fadein 10s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 10s; /* Firefox < 16 */
+        -ms-animation: fadein 10s; /* Internet Explorer */
+         -o-animation: fadein 10s; /* Opera < 12.1 */
+            animation: fadein 10s;
+}
+
+a {
+    margin-top: 25px;
+    font-size: 21px;
+    text-align: center;
+
+    -webkit-animation: fadein 18s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 18s; /* Firefox < 16 */
+        -ms-animation: fadein 18s; /* Internet Explorer */
+         -o-animation: fadein 18s; /* Opera < 12.1 */
+            animation: fadein 18s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+#validation{
+    width: fit-content;
+    position: relative;
+    bottom: 40%;
+    font-size: 2em;
+    color: red;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /** Try to center game on page **/
 #gameContainer{
     position: absolute;
@@ -13,7 +88,6 @@ html, body{
     left: 50%;
     transform: translate(-50%, -50%);
     margin: auto;
-
 }
 
 /* The Overlay (background) */
@@ -94,7 +168,7 @@ html, body{
     font-size: 45px;
 }
 
-#startGame{
+.proceedButton{
     margin-top: 40px;
     width: fit-content;
     margin-left: auto;

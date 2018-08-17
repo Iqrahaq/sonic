@@ -10,24 +10,34 @@
 </head>
 <body>
     <!--Overlay Menu Screen-->
+    
+    <!--Welcome Message-->
+    <div id="welcome" class="overlay">
+    <!--Overlay content-->
+        <div class="overlayContent">
+            <img src="img/menuLogo.png" alt="Sonic Logo" class="overlayLogo">
+            <p style="margin-bottom: 0; font-size: 2.5em;">Welcome...</p>
+            <a href="#" onclick="openNav()" class="proceedButton" style="font-family:Webdings; font-size: 4em; margin-top: 0;"> &#9758; </a>
+        </div>
+    </div>
+
     <div id="navigation" class="overlay">
-        <!--<a href="javascript:void(0)" class="closeButton" onclick="closeNav()">&times;</a>-->
         <a href="javascript:void(0)" class="leaderboardButton" onclick="openBoard()" style="font-family:Webdings">&#252;</a>
         <!--Overlay content-->
         <div class="overlayContent">
-            <img src="img/menuLogo.png" alt="Sonic Logo">
+            <img src="img/menuLogo.png" alt="Sonic Logo" class="overlayLogo">
             <p>Type a Name</p>
-            <input type="text" name="playerName" id="playerName">
-            <a href="#" onclick="closeNav()" id="startGame">Enter</a>
+            <input type="text" name="playerName" id="playerName"> <!-- Validate !! -->
+            <a href="#" class="proceedButton" id="recordName">Enter</a>
         </div>
     </div>
 
     <div id="leaderBoard" class="overlay" style="display:none">
-        <a href="javascript:void(0)" class="closeButton" onclick="openNav()">&times;</a>        
+        <a href="javascript:void(0)" class="closeButton" onclick="openNav()" id="exitBoard">&times;</a>        
         <div class="overlayContent">
-            <img src="img/menuLogo.png" alt="Sonic Logo">
+            <img src="img/logo.png" alt="Sonic Logo" class="overlayLogo">
             <p>Leaderboard</p>
-            
+            <!-- Leaderboard Content -->
         </div>
     </div>
 
