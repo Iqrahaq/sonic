@@ -8,9 +8,8 @@
     <link rel="icon" href="img/ring.gif">
     <link rel="stylesheet" type="text/css" media="screen" href="sonic.css" />
 </head>
-<body>
+<body>    
     <!--Overlay Menu Screen-->
-    
     <!--Welcome Message-->
     <div id="welcome" class="overlay">
     <!--Overlay content-->
@@ -22,13 +21,13 @@
     </div>
 
     <div id="navigation" class="overlay">
-        <a href="javascript:void(0)" class="leaderboardButton" onclick="openBoard()" style="font-family:Webdings">&#252;</a>
+        <a href="javascript:void(0)" class="leaderboardButton" onclick="openBoard()" style="font-family:Webdings" accesskey="l">&#252;</a>
         <!--Overlay content-->
         <div class="overlayContent">
             <img src="img/menuLogo.png" alt="Sonic Logo" class="overlayLogo">
             <p>Type a Name</p>
             <input type="text" name="playerName" id="playerName"> <!-- Validate !! -->
-            <a href="#" class="proceedButton" id="recordName">Enter</a>
+            <a href="#" class="proceedButton" id="recordName" onclick="validation()">Enter</a>
         </div>
     </div>
 
@@ -74,4 +73,5 @@
     </div>
 </body>
     <script src="sonic.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </html>

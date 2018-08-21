@@ -23,11 +23,11 @@ p, input {
     font-size: 21px;
     text-align: center;
 
-    -webkit-animation: fadein 10s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: fadein 10s; /* Firefox < 16 */
-        -ms-animation: fadein 10s; /* Internet Explorer */
-         -o-animation: fadein 10s; /* Opera < 12.1 */
-            animation: fadein 10s;
+    -webkit-animation: fadein 8s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 8s; /* Firefox < 16 */
+        -ms-animation: fadein 8s; /* Internet Explorer */
+         -o-animation: fadein 8s; /* Opera < 12.1 */
+            animation: fadein 8s;
 }
 
 a {
@@ -35,11 +35,11 @@ a {
     font-size: 21px;
     text-align: center;
 
-    -webkit-animation: fadein 18s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: fadein 18s; /* Firefox < 16 */
-        -ms-animation: fadein 18s; /* Internet Explorer */
-         -o-animation: fadein 18s; /* Opera < 12.1 */
-            animation: fadein 18s;
+    -webkit-animation: fadein 16s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 16s; /* Firefox < 16 */
+        -ms-animation: fadein 16s; /* Internet Explorer */
+         -o-animation: fadein 16s; /* Opera < 12.1 */
+            animation: fadein 16s;
 }
 
 @keyframes fadein {

@@ -16,54 +16,78 @@ function openWelcome() {
     document.getElementById("welcome").style.display = "block";
     document.getElementById("navigation").style.display = "none";
     document.getElementById("leaderBoard").style.display = "none";
-}
+
+//     document.onkeydown = function(evt) {
+//         evt = evt || window.event;
+//         var x = evt.keyCode;
+//             if (x === 38 || x === 40) {
+//                 return false;
+//             }
+//     };
+
+//     //Spacebar and Enter to navigate
+//     document.body.onkeydown = function(e){
+//         if(e.keyCode == 32 || e.keyCode == 13){
+//             openNav();
+//         }
+//     }
+} 
 
 /* Open Navigation*/
 function openNav() {
-    var input = document.getElementById("playerName");
-    var recordName = document.getElementById("recordName");
-    var navigation = document.getElementById("navigation");
     document.getElementById("welcome").style.display = "none";
-    navigation.style.display = "block";
+    document.getElementById("navigation").style.display = "block";
     document.getElementById("leaderBoard").style.display = "none";
 
-
-    var para = document.createElement("p");
-    var node = document.createTextNode("Please enter a name!");
-    para.appendChild(node);
-    navigation.appendChild(para);
-    para.setAttribute("id", "validation"); 
-    var validation = document.getElementById("validation"); 
-    validation.style.display = "none";
-
-    recordName.onclick = function(){
-        if (input.value == ""){
-            validation.style.display = "block"; 
-        }
-        else{
-            document.getElementById("navigation").style.display = "none";
-            document.getElementById("welcome").style.display = "none";
-        }
-    };
-    validation.style.display = "none";
-    //Spacebar to skip
-    //Game Instructions
-    //Fade out
+//     //Spacebar and Enter to navigate
+//     document.onkeydown = function(e){
+//         if(e.keyCode == 32 || e.keyCode == 13){
+//             validation();
+//         }
+//     }
 }
 
 /* Open Board -- GET ARROW KEYS TO WORK AGAIN*/
 function openBoard() {
     document.getElementById("leaderBoard").style.display = "block";
     document.getElementById("navigation").style.display = "none";
-    document.onkeydown = function(evt) {
-        evt = evt || window.event;
-        var x = evt.keyCode;
-        if (x === 38 || x === 40) {
-            return true;
-        }
-    };
 }
 
+function validation(){
+    var navigation = document.getElementById("navigation");
+    var input = document.getElementById("playerName");
+    var recordName = document.getElementById("recordName");
+    var validation = document.getElementById("validation"); 
+    if (validation == null){
+        var para = document.createElement("p");
+        var node = document.createTextNode("Please enter a name!");
+        para.appendChild(node);
+        navigation.appendChild(para);
+        para.setAttribute("id", "validation"); 
+        var validation = document.getElementById("validation");
+        validation.style.display = "none";
+
+        recordName.onclick = function(){
+            if (input.value == ""){
+                validation.style.display = "block"; 
+            }
+            else{
+                document.getElementById("navigation").style.display = "none";
+                document.getElementById("welcome").style.display = "none";
+
+//                     document.onkeydown = function(evt) {
+//                         evt = evt || window.event;
+//                         var x = evt.keyCode;
+//                             if (x === 38 || x === 40) {
+//                                 return true;
+//                             }
+//                     };
+            }
+        };
+    }
+        //Game Instructions
+        //Fade out   
+}
 
 /* Game Layout - Checkered Grid */
 
@@ -293,27 +317,26 @@ function sonicHit(){ //FIX ALL OF THIS
             }
         }
     }
+
+    //Set timer before going to this function
+    retryGame();
+}
+
+//Create Retry Feature.
+function retryGame(){
     
 }
+
 
 //Sound effects ???
 
 //Leaderboard
+ 
+    topScore.innerHTML = "0";
 
     openWelcome();
     
     window.onload = function(){
-
-    document.onkeydown = function(evt) {
-    evt = evt || window.event;
-    var x = evt.keyCode;
-        if (x === 38 || x === 40) {
-            return false;
-        }
-    };
-
-    var topScoreText = localStorage.getItem("topScore");
-    topScore.innerHTML = topScoreText;
 
     //Sonic and Ring Starting Position.
     ringAvatar.src = "img/ring.gif";
@@ -359,17 +382,3 @@ document.onkeydown = function(evt) {
         topScoreIncrement();
     }
 };
-
-// // Get the input field
-// var input = document.getElementById("startGame");
-
-// // Execute a function when the user releases a key on the keyboard
-// input.addEventListener("keyup", function(event) {
-//   // Cancel the default action, if needed
-//   event.preventDefault();
-//   // Number 13 is the "Enter" key on the keyboard
-//   if (event.keyCode === 13) {
-//     // Trigger the button element with a click
-//     document.getElementById("startGame").click();
-//   }
-// });
